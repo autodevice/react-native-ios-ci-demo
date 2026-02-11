@@ -1,15 +1,26 @@
-# react-native-ios-ci-demo
+# RNIOSDemo
 
-React Native iOS CI demo for building and testing RN apps on iOS
+A React Native iOS simulator demo app with CI/CD via GitHub Actions.
 
-## Overview
+## Build
 
-This repository is a demo project for [AutoDevice](https://autodevice.dev) CI integration.
+```bash
+npm install
+cd ios && pod install && cd ..
+xcodebuild build \
+  -workspace ios/RNIOSDemo.xcworkspace \
+  -scheme RNIOSDemo \
+  -sdk iphonesimulator \
+  -configuration Debug \
+  -derivedDataPath build \
+  CODE_SIGN_IDENTITY="" \
+  CODE_SIGNING_ALLOWED=NO
+```
 
-## Getting Started
+## CI/CD
 
-Coming soon.
+The GitHub Actions workflow builds the iOS simulator app and uploads it to AutoDevice on every push to `main`.
 
-## License
+### Required Secrets
 
-MIT
+- `AUTODEVICE_API_KEY` — API key for AutoDevice
